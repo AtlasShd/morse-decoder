@@ -37,8 +37,18 @@ const MORSE_TABLE = {
     '-----':  '0',
 };
 
-function decode(expr) {
-    // write your solution here
+function decode(expr) { // my solution works with a 'npm test', but it doesnt work at auto-test app.rs.school
+	let result = '';
+
+	for (let i = 0; i < expr.length; i += 10) {
+		let temp = MORSE_TABLE[(
+			String(+expr.substring(i, i + 10)))
+			.replaceAll('10', '.')
+			.replaceAll('11', '-')
+		];
+		result = result + (temp ? temp : ' ');
+	}
+	return result;
 }
 
 module.exports = {
